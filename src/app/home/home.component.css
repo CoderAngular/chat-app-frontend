@@ -1,0 +1,22 @@
+.login{
+    width: 40%;
+    margin: 0 auto;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+}
+
+.login h3{
+    text-align: center;
+}
+
+.login form{
+    padding:50px;
+    padding-top: 0px;
+}
+
+.bs-linebreak {
+    height:10px;
+}
+.float-right{
+    float:right;
+}
