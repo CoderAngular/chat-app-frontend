@@ -22,7 +22,7 @@
     <form [formGroup]="signupForm" (ngSubmit)="signupSubmit()" novalidate>
       <div class="form-group">
         <label for="signupUsernameInput">Username</label>
-        <input type="text" class="form-control" formControlName="signupUsername" id="signupUsernameInput" placeholder="Enter username">
+        <input type="text" class="form-control" formControlName="signupUsername" id="signupUsernameInput" placeholder="Enter username" maxlength="10">
       </div>
       <div class="bs-linebreak"></div>
       <div class="form-group">

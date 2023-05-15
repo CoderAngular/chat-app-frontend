@@ -1,1 +1,32 @@
-<p>chat-room works!</p>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" id="users-list">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Users List</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item" *ngFor="let user of users">
+            <a class="nav-link" aria-current="page">
+                {{user?.username}}
+            </a>
+            </li>
+    </ul>
+</div>
+<div class="d-flex flex-column flex-shrink-0 p-3" id="chat-window">
+
+    <div id="chat-area">
+        <ul *ngFor="let m of messages">
+            <div class="chat-info">{{m.username}} <span>{{m.time}}</span></div>
+            <div class="chat-message">{{m.message}}</div>
+        </ul>
+    </div>
+    <div class="d-flex gap-2 mb-3">
+        <textarea #mymessage></textarea>
+        <button type="button" class="btn btn-primary" (click)="sendMessage(mymessage)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"></path>
+            </svg>
+            Send
+        </button>
+    </div> 
+</div>

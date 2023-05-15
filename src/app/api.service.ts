@@ -11,14 +11,11 @@ export class ApiService {
   }
 
   userSignup(user: signupUser){
-    this.http.post('/api/userSignup', user).subscribe(res=>{
-      console.log(res);
-    });
+    return this.http.post('/api/userSignup', user);
   }
 
   userLogin(user: loginUser){
-    this.http.post('/api/userLogin', user).subscribe(res=>{
-      console.log(res);
-    });
+    return this.http.post('/api/userLogin', user);
   }
+  
 }

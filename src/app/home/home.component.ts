@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent {
   loginForm: FormGroup;
   signupForm!: FormGroup;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
     this.loginForm = new FormGroup({
       loginUsername: new FormControl('', [Validators.required]),
       loginPassword: new FormControl('', [Validators.required])
@@ -38,10 +39,14 @@ export class HomeComponent {
     }
     //post the login form to backend
     console.log(this.loginForm.value);
-    this.apiService.userLogin(this.loginForm.value);
-    // this.apiService.userLogin().subscribe(res => {
-    //   console.log(res);
-    // });
+    //this.apiService.userLogin(this.loginForm.value);
+    this.apiService.userLogin(this.loginForm.value).subscribe((res:any) => {
+      if(res.statusCode == 200){
+        this.router.navigate(['/chatroom', res.user.name]);
+      }else{
+        alert(res.statusMessage);
+      }
+    });
   }
 
   signupSubmit(){
@@ -56,6 +61,11 @@ export class HomeComponent {
     }
       
     //post the signup form to backend
-    this.apiService.userSignup(this.signupForm.value);
+    this.apiService.userSignup(this.signupForm.value).subscribe((res: any) => {
+      if(res.statusCode == 200){
+        alert(res.statusMessage);
+        this.loginView();
+      }
+    });
   }
 }
